@@ -21,7 +21,7 @@
 
     body {
       display: flex;
-      flex-direction: column; /* Align content vertically */
+      flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       width: 100%;
@@ -34,7 +34,7 @@
 
     .content-container {
       display: flex;
-      justify-content: space-between; /* Align image on left and text on right */
+      justify-content: space-between;
       width: 90%;
       max-width: 1200px;
     }
@@ -42,7 +42,7 @@
     .image-container {
       flex: 1;
       display: flex;
-      justify-content: flex-start; /* Align image to the left */
+      justify-content: flex-start;
       align-items: center;
       padding: 20px;
       position: relative;
@@ -50,7 +50,7 @@
     }
 
     .image-container img {
-      width: 80%; /* Resize the image */
+      width: 80%;
       max-height: 80vh;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -59,66 +59,8 @@
 
     .text-content {
       flex: 1;
-      text-align: left; /* Align text to the left */
+      text-align: left;
       padding: 20px;
-    }
-
-    .lines {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 100%;
-      margin: auto;
-      width: 90vw;
-    }
-
-    .line {
-      position: absolute;
-      width: 1px;
-      height: 100%;
-      top: 0;
-      left: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      overflow: hidden;
-    }
-
-    .line::after {
-      content: "";
-      display: block;
-      position: absolute;
-      height: 15vh;
-      width: 100%;
-      top: -50%;
-      left: 0;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
-      animation: drop 7s 0s infinite cubic-bezier(0.4, 0.26, 0, 0.97);
-    }
-
-    .line:nth-child(1) {
-      margin-left: -25%;
-    }
-
-    .line:nth-child(1)::after {
-      animation-delay: 2s;
-    }
-
-    .line:nth-child(3) {
-      margin-left: 25%;
-    }
-
-    .line:nth-child(3)::after {
-      animation-delay: 2.5s;
-    }
-
-    @keyframes drop {
-      0% {
-        top: -50%;
-      }
-
-      100% {
-        top: 110%;
-      }
     }
 
     .title {
@@ -225,27 +167,36 @@
     </div>
   </div>
 
+  <!-- Showcase Section -->
   <div class="showcase">Showcase</div>
 
+  <!-- Video Container Section -->
   <div class="video-container">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 
   <script>
+    // Get the image and container
     const image = document.getElementById('image');
-    const imageContainer = document.getElementById('image-container');
+    const imageContainer = document.querySelector('.image-container'); // Corrected querySelector
 
+    // Add event listener for mouse movement
     imageContainer.addEventListener('mousemove', (event) => {
       const { width, height, left, top } = imageContainer.getBoundingClientRect();
       const centerX = left + width / 2;
       const centerY = top + height / 2;
+
       const deltaX = (event.clientX - centerX) / width;
       const deltaY = (event.clientY - centerY) / height;
+
+      // Rotate the image based on mouse position
       const rotateX = deltaY * 10; // Adjust rotation sensitivity
       const rotateY = -deltaX * 10; // Adjust rotation sensitivity
+
       image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
+    // Reset rotation when mouse leaves the image container
     imageContainer.addEventListener('mouseleave', () => {
       image.style.transform = 'rotateX(0deg) rotateY(0deg)';
     });
