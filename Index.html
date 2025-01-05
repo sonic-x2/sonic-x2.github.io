@@ -1,123 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DarkzSploit</title>
-    <link rel="icon" href="https://i.ibb.co/MhSCXn3/sitrus.webp">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" type="image/png" href="https://i.ibb.co/XzmWRhP/qwkujhrk.png" />
+  <meta name="apple-mobile-web-app-title" content="Hoshi Z">
+  <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/XzmWRhP/qwkujhrk.png" />
+  <link rel="mask-icon" type="image/x-icon" href="https://i.ibb.co/XzmWRhP/qwkujhrk.png" color="#111" />
+  <title>Hoshi Z</title>
+  <link rel="canonical" href="https://codepen.io/osorina/pen/PQdMOO">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #0a192f;
-            color: #F2E9EA;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            position: relative; /* Allows absolute positioning of the top-left image */
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box !important;
+    }
 
-        .top-left-container {
-            position: absolute;
-            top: 25px; /* Distance from the top */
-            left: 25px; /* Distance from the left */
-            display: flex;
-            align-items: center; /* Center vertically */
-        }
+    html, body {
+      height: 100%;
+    }
 
-        .top-left-logo {
-            width: 110px; /* Set width */
-            height: 60px; /* Set height */
-            object-fit: contain; /* Maintain aspect ratio */
-        }
+    body {
+      display: table;
+      width: 100%;
+      height: 100%;
+      background-color: #171717;
+      color: #fff;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
 
-        .top-left-label {
-            margin-left: 10px; /* Space between the logo and the label */
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-            color: #F2E9EA; /* Text color */
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 1em; /* Font size for the label */
-        }
+    .lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      margin: auto;
+      width: 90vw;
+    }
 
-        .main-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1200px;
-            width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
-        }
+    .line {
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      top: 0;
+      left: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
 
-        .text-container {
-            flex: 2;
-            text-align: left;
-            padding-right: 20px; /* Adjust as needed */
-        }
+    .line::after {
+      content: "";
+      display: block;
+      position: absolute;
+      height: 15vh;
+      width: 100%;
+      top: -50%;
+      left: 0;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+      -webkit-animation: drop 7s 0s infinite;
+      animation: drop 7s 0s infinite;
+      -webkit-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+      -webkit-animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+      animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+    }
 
-        .text-container h1 {
-            font-size: 4em; /* Adjust size as needed */
-            margin-bottom: 20px;
-            color: #F2E9EA;
-            text-shadow: 
-                0 0 5px #118EF4, 
-                0 0 10px #118EF4, 
-                0 0 15px #118EF4, 
-                0 0 20px #118EF4, 
-                0 0 25px #118EF4, 
-                0 0 30px #118EF4, 
-                0 0 35px #118EF4;
-        }
+    .line:nth-child(1) {
+      margin-left: -25%;
+    }
 
-        .button-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
+    .line:nth-child(1)::after {
+      -webkit-animation-delay: 2s;
+      animation-delay: 2s;
+    }
 
-        .button {
-            padding: 20px 40px; /* Adjust padding for smaller buttons */
-            font-size: 1.2em;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+    .line:nth-child(3) {
+      margin-left: 25%;
+    }
 
-        .button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
-        }
+    .line:nth-child(3)::after {
+      -webkit-animation-delay: 2.5s;
+      animation-delay: 2.5s;
+    }
 
-        .discord-button, .download-button {
-            background-color: #191919;
-        }
-        
-        .purchase-button {
-            background-color: #191919;
-        }
+    @-webkit-keyframes drop {
+      0% {
+        top: -50%;
+      }
 
-        .image-container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+      100% {
+        top: 110%;
+      }
+    }
 
-        .image-container img {
-            width: 700px; /* Set width to desired size */
-            height: 400px; /* Set height to desired size */
-            object-fit: contain; /* Ensure the full image is visible */
-        }
-    </style>
+    @keyframes drop {
+      0% {
+        top: -50%;
+      }
+
+      100% {
+        top: 110%;
+      }
+    }
+
+    /* Title Styles */
+    .title {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 40px;
+      color: white;
+      text-align: center;
+      animation: shineFade 3s infinite;
+    }
+
+    /* Description Styles */
+    .description {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 18px;
+      color: white;
+      text-align: center;
+    }
+
+    /* Showcase Styles */
+    .showcase {
+      position: absolute;
+      top: 140px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    /* YouTube Embed Styles */
+    .video-container {
+      position: absolute;
+      top: 180px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 50%;
+      max-width: 800px;
+      max-height: 450px;
+    }
+
+    /* Button Container Styles */
+    .button-container {
+      position: absolute;
+      top: 650px; /* Placing buttons below the video */
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    /* Button Styles */
+    .button {
+      padding: 15px 30px;
+      font-size: 18px;
+      color: #fff;
+      background-color: #333;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .button:before {
+      content: "";
+      position: absolute;
+      top: -200%;
+      left: -200%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+      transition: all 0.4s ease;
+      opacity: 0.4;
+      border-radius: 50%;
+    }
+
+    .button:hover:before {
+      top: -50%;
+      left: -50%;
+      width: 150%;
+      height: 150%;
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .button:focus {
+      outline: none;
+    }
+
+    .button:active {
+      background-color: #444;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Shine + Fade Animation */
+    @keyframes shineFade {
+      0% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4), 0 0 30px rgba(255, 255, 255, 0.2);
+        opacity: 0.8;
+      }
+
+      50% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.4);
+        opacity: 1;
+      }
+
+      100% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4), 0 0 30px rgba(255, 255, 255, 0.2);
+        opacity: 0.8;
+      }
+    }
+  </style>
 </head>
-<body>
+
+<body translate="no">
+  <div class="lines">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
     <div class="top-left-container">
         <img src="https://i.ibb.co/9gFBGSc/sitrus.webp" alt="Top Left Logo" class="top-left-logo">
         <div class="top-left-label">DarkzSploit</div>
@@ -138,4 +258,5 @@
         </div>
     </div>
 </body>
+
 </html>
