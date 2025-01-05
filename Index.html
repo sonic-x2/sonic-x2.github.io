@@ -175,31 +175,31 @@
     <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 
-  <script>
-    // Get the image and container
-    const image = document.getElementById('image');
-    const imageContainer = document.querySelector('.image-container'); // Corrected querySelector
+<script>
+  // Get the image and container
+  const image = document.getElementById('image');
+  const imageContainer = document.querySelector('.image-container'); // Corrected querySelector
 
-    // Add event listener for mouse movement
-    imageContainer.addEventListener('mousemove', (event) => {
-      const { width, height, left, top } = imageContainer.getBoundingClientRect();
-      const centerX = left + width / 2;
-      const centerY = top + height / 2;
+  // Add event listener for mouse movement
+  imageContainer.addEventListener('mousemove', (event) => {
+    const { width, height, left, top } = imageContainer.getBoundingClientRect();
+    const centerX = left + width / 2;
+    const centerY = top + height / 2;
 
-      const deltaX = (event.clientX - centerX) / width;
-      const deltaY = (event.clientY - centerY) / height;
+    const deltaX = (event.clientX - centerX) / width;
+    const deltaY = (event.clientY - centerY) / height;
 
-      // Rotate the image based on mouse position
-      const rotateX = deltaY * 10; // Adjust rotation sensitivity
-      const rotateY = -deltaX * 10; // Adjust rotation sensitivity
+    // Increase rotation sensitivity for stronger movement
+    const rotateX = deltaY * 30; // Increased sensitivity to 30
+    const rotateY = -deltaX * 30; // Increased sensitivity to 30
 
-      image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
+    image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
 
-    // Reset rotation when mouse leaves the image container
-    imageContainer.addEventListener('mouseleave', () => {
-      image.style.transform = 'rotateX(0deg) rotateY(0deg)';
-    });
-  </script>
+  // Reset rotation when mouse leaves the image container
+  imageContainer.addEventListener('mouseleave', () => {
+    image.style.transform = 'rotateX(0deg) rotateY(0deg)';
+  });
+</script>
 </body>
 </html>
