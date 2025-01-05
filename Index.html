@@ -18,6 +18,39 @@
     html, body {
       height: 100%;
     }
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Blue Gradient Background */
+    .gradient {
+      --size: 750px;
+      --speed: 50s;
+      --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+
+      width: var(--size);
+      height: var(--size);
+      filter: blur(calc(var(--size) / 5));
+      background-image: linear-gradient(135deg, #00c6ff, #0072ff); /* Blue gradient */
+      animation: rotate var(--speed) var(--easing) alternate infinite;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+
+    @media (min-width: 720px) {
+      .gradient {
+        --size: 500px;
+      }
+    }
 
     body {
       display: flex;
@@ -152,7 +185,10 @@
     }
   </style>
 </head>
-<body translate="no" cz-shortcut-listen="true">
+<body>
+
+  <div class="gradient"></div>
+
   <div class="content-container">
     <div class="image-container">
       <img src="https://i.postimg.cc/s2rGTjwk/image.png" alt="Displaying Image" id="image">
