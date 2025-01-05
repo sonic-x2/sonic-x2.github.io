@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" type="image/png" href="https://i.postimg.cc/cJkg0RsS/executor-29-1.png" />
@@ -9,7 +8,6 @@
   <link rel="mask-icon" type="https://i.postimg.cc/cJkg0RsS/executor-29-1.png" color="#111" />
   <title>Sonic X2</title>
   <link rel="canonical" href="https://codepen.io/wilvander/pen/KKQrGgP">
-
   <style>
     * {
       margin: 0;
@@ -47,6 +45,8 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
+      position: relative;
+      transition: transform 0.2s ease-out;
     }
 
     .image-container img {
@@ -54,6 +54,7 @@
       max-height: 120vh;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.1s ease-out;
     }
 
     .text-content {
@@ -61,8 +62,7 @@
       text-align: center;
       padding: 20px;
     }
-
-    .lines {
+       .lines {
       position: absolute;
       top: 0;
       left: 0;
@@ -196,8 +196,7 @@
     }
   </style>
 </head>
-
-<body translate="no">
+<body translate="no" cz-shortcut-listen="true">
   <div class="lines">
     <div class="line"></div>
     <div class="line"></div>
@@ -205,18 +204,37 @@
     <div class="line"></div>
   </div>
   <div class="content-container">
-    <div class="image-container">
-      <img src="https://i.postimg.cc/s2rGTjwk/image.png/" alt="Displaying Image">
+    <div class="image-container" id="image-container">
+      <img src="https://i.postimg.cc/s2rGTjwk/image.png" alt="Displaying Image" id="image">
     </div>
     <div class="text-content">
       <div class="title">Sonic X2</div>
-      <div class="description">Sonic X2 The Free Roblox Executor Using Argon APi</div>
+      <div class="description">Sonic X2 The Free Roblox Executor Using Argon API</div>
       <div class="button-container">
         <button class="button" onclick="window.location.href='https://mboost.me/a/dg9'">Download</button>
         <button class="button" onclick="window.location.href='https://discord.gg/cxzVb9d5Zt'">Discord Server</button>
       </div>
     </div>
   </div>
-</body>
 
+  <script>
+    const image = document.getElementById('image');
+    const imageContainer = document.getElementById('image-container');
+
+    imageContainer.addEventListener('mousemove', (event) => {
+      const { width, height, left, top } = imageContainer.getBoundingClientRect();
+      const centerX = left + width / 2;
+      const centerY = top + height / 2;
+      const deltaX = (event.clientX - centerX) / width;
+      const deltaY = (event.clientY - centerY) / height;
+      const rotateX = deltaY * 10; // Adjust rotation sensitivity
+      const rotateY = -deltaX * 10; // Adjust rotation sensitivity
+      image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    imageContainer.addEventListener('mouseleave', () => {
+      image.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+  </script>
+</body>
 </html>
